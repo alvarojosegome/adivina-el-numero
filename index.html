@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juego de Adivinanza</title>  
+  <link rel= "stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+  <h1>Adivina el número</h1>
+  <p>Intenta adivinar un número del 1 al 20:</p>
+  <input type="number" id="guess">
+  <button onclick="checkGuess()">Adivinar</button>
+  <p id="message"></p>
+
+  <script>
+    // Generar un número aleatorio del 1 al 20
+    const numeroAleatorio = Math.floor(Math.random() * 20) + 1;
+    let intentos = 3;
+
+    function checkGuess() {
+  const guess = parseInt(document.getElementById('guess').value);
+  
+  if (guess === numeroAleatorio) {
+    document.getElementById('message').innerText = '¡Felicitaciones! Adivinaste el número.';
+  } else if (guess < numeroAleatorio) {
+    document.getElementById('message').innerText = 'El número es mayor.';
+  } else {
+    document.getElementById('message').innerText = 'El número es menor.';
+  }
+}
+
+  </script>
+</body>
+</html>
