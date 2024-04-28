@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Juego de Adivinanza</title>  
-  <link rel= "stylesheet" type="text/css" href="index.css">
+  <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body>
   <h1>Adivina el número</h1>
@@ -15,21 +15,36 @@
 
   <script>
     // Generar un número aleatorio del 1 al 20
-    const numeroAleatorio = Math.floor(Math.random() * 20) + 1;
+    let numeroAleatorio = Math.floor(Math.random() * 20) + 1;
     let intentos = 3;
 
     function checkGuess() {
-  const guess = parseInt(document.getElementById('guess').value);
-  
-  if (guess === numeroAleatorio) {
-    document.getElementById('message').innerText = '¡Felicitaciones! Adivinaste el número.';
-  } else if (guess < numeroAleatorio) {
-    document.getElementById('message').innerText = 'El número es mayor.';
-  } else {
-    document.getElementById('message').innerText = 'El número es menor.';
-  }
-}
+      const guess = parseInt(document.getElementById('guess').value);
+      
+      if (guess === numeroAleatorio) {
+        document.getElementById('message').innerText = '¡Felicitaciones! Adivinaste el número.';
+      } else if (guess < numeroAleatorio) {
+        document.getElementById('message').innerText = 'El número es mayor.';
+      } else {
+        document.getElementById('message').innerText = 'El número es menor.';
+      }
 
+      // Reducir el número de intentos
+      intentos--;
+
+      if (intentos === 0) {
+        document.getElementById('message').innerText = '¡Game Over! El número era ' + numeroAleatorio + '. Intenta de nuevo.';
+        reiniciarJuego();
+      }
+    }
+
+    // Función para reiniciar el juego
+    function reiniciarJuego() {
+      // Generar un nuevo número aleatorio
+      numeroAleatorio = Math.floor(Math.random() * 20) + 1;
+      // Restablecer el número de intentos
+      intentos = 3;
+    }
   </script>
 </body>
 </html>
